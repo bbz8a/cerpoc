@@ -1,0 +1,75 @@
+import { test, expect } from '@playwright/test';
+
+test('user can log in', async ({ page }) => {
+
+  const username = process.env.CERP_USERNAME;
+  const password = process.env.CERP_PASSWORD;
+  const login_url = process.env.LOGIN_URL;
+
+  if (!username || !password || !login_url) {
+    throw new Error('Set CERP_USERNAME, CERP_PASSWORD, and LOGIN_URL before running this test.');
+  }
+
+  // Use the destination URL rather than the Outlook Safe Links wrapper.
+  await page.goto(login_url);
+  await page.getByLabel(/email|username/i).fill(username);
+  await page.getByLabel(/password/i).fill(password);
+  await page.getByRole('button', { name: /sign in|log in|login/i }).click();
+  // verify  that the user is logged in by checking for a distinctive element on the authenticated page
+  await expect(page).not.toHaveURL(/\/login(?:[/?#]|$)/);
+  await expect(page.getByRole('button', { name: 'David Lovett (cer_admin) ▾' })).toBeVisible();
+  // add hover here to ensure selector for role switch is visible
+  await page.locator('button.identity-switcher__trigger.topbar__user').hover();
+  await page.getByRole('button', { name: 'Switch' }).click();
+  await page.getByLabel('RoleCER adminCER').selectOption('cer_admin');
+  await page.getByRole('button', { name: 'Switch' }).click();
+  await page.getByRole('button', { name: 'David Lovett (cer_admin) ▾' }).click();
+  await page.getByLabel('RoleCER adminCER').selectOption('participant_admin');
+  await page.getByRole('searchbox', { name: 'Organisation' }).click();
+  await page.getByRole('searchbox', { name: 'Organisation' }).fill('880734642');
+  await page.getByRole('listbox').selectOption('CER-P-01M51KSJ5RKY1C9KZFRTC0W7FV');
+  await page.getByRole('button', { name: 'Switch' }).click();
+  await page.getByRole('link', { name: 'Organisation details' }).click();
+  await page.getByRole('button', { name: 'Update organisation details' }).click();
+  await page.getByRole('textbox', { name: 'Legal name' }).click();
+  await page.getByRole('textbox', { name: 'ABN 11 digits' }).click();
+  await page.getByRole('textbox', { name: 'Contact name' }).click();
+  await page.getByRole('textbox', { name: 'Email' }).click();
+  await page.getByRole('textbox', { name: 'Phone' }).click();
+  await page.getByRole('textbox', { name: 'Address line 1' }).click();
+  await page.getByRole('textbox', { name: 'Address line 2 (optional)' }).click();
+  await page.getByRole('textbox', { name: 'Suburb' }).click();
+  await page.getByRole('textbox', { name: 'Postcode' }).click();
+  await page.getByRole('textbox', { name: 'Reason for change (recorded' }).click();
+  await page.getByText('History').click();
+  await page.getByRole('cell', { name: '1', exact: true }).click();
+  await page.getByRole('cell', { name: 'pending' }).click();
+  await page.getByRole('cell', { name: '2', exact: true }).click();
+  await page.getByRole('cell', { name: 'approved', exact: true }).click();
+  await page.getByRole('columnheader', { name: 'Version' }).click();
+  await page.getByRole('columnheader', { name: 'Status' }).click();
+  await page.getByRole('columnheader', { name: 'Changes' }).click();
+  await page.getByRole('button', { name: 'Cancel' }).click();
+  await page.getByText('CER-P-').click();
+  await page.getByRole('definition').filter({ hasText: 'approved' }).locator('span').click();
+  await page.getByRole('definition').filter({ hasText: 'Allen Electricity Pty Ltd (' }).click();
+  await page.getByText('Allen Electricity (SIM)').click();
+  await page.getByText('88073464234').click();
+  await page.getByText('retailer').click();
+  await page.getByRole('definition').filter({ hasText: 'Kate Harris (SIM)' }).click();
+  await page.getByText('sim.ret006.admin@example.').click();
+  await page.getByText('0402065297').click();
+  await page.getByText('King Ct, Badgerys Creek NSW 2555').click();
+  await page.getByRole('button', { name: 'David Lovett (' }).click();
+  await page.getByLabel('RoleCER adminCER').selectOption('cer_admin');
+  await page.getByRole('button', { name: 'Switch' }).click();
+  // wait for the next page to load before signing out
+  await page.waitForLoadState('networkidle');
+  await page.getByRole('button', { name: 'Sign out' }).click();
+  // wait for the next page to load before checking the URL
+  await page.waitForLoadState('networkidle');
+  // get current url and check that it is the login page
+  const current_url = page.url();
+  expect(current_url).toMatch(/\/login(?:[/?#]|$)/);
+
+});

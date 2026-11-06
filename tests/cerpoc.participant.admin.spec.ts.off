@@ -1,0 +1,210 @@
+import { test, expect } from '@playwright/test';
+
+
+  export interface OrganisationDetails {
+    legal_name: string;
+    trading_name?: string;
+    abn: string;
+    participant_type: string;
+    contact_name: string;
+    email: string;
+    phone: string;
+    address: string;
+    address_line_1: string;
+    address_line_2?: string;
+    suburb: string;
+    postcode: string;
+    state: string;
+  }
+
+  export interface SystemIdentifers {
+    cer_id: string;
+    cer_lastupdated: string;
+    cer_version: string;
+    application_status: string;
+  }
+
+test('test', async ({ page }) => {
+
+  // Add the login recording to its own page object
+  const username = process.env.CERP_USERNAME;
+  const password = process.env.CERP_PASSWORD;
+  const login_url = process.env.LOGIN_URL;
+  const role = "cer_officer";
+  const pending_filter = "AUTO"; // this means the new participant must have ran before this  
+  const action = "cancel"; // this means we are testing the objects match between screens
+ 
+  if (!username || !password || !login_url) {
+    throw new Error('Set CERP_USERNAME, CERP_PASSWORD, and LOGIN_URL before running this test.');
+  }
+
+  // Use the destination URL rather than the Outlook Safe Links wrapper.
+  await page.goto(login_url);
+  await page.getByLabel(/email|username/i).fill(username);
+  await page.getByLabel(/password/i).fill(password);
+  await page.getByRole('button', { name: /sign in|log in|login/i }).click();
+  
+  // Switcher is a sub comoponent of the topbar, maybe add a hover to the topbar to ensure the switcher is visible
+  // add hover here to ensure selector for role switch is visible, use locator to find the button by class name
+  await page.locator('button.identity-switcher__trigger.topbar__user').hover();
+  // select role option
+  await page.getByLabel('RoleCER adminCER').selectOption(role);
+  // switch role
+  await page.getByRole('button', { name: 'Switch' }).click();
+
+  //Click Participants on Left hand menu
+  await page.getByRole('link', { name: 'Participants' }).click();
+  
+  //BREAK POINT - pause the test to allow for manual inspection of the page and the form fields
+  await page.pause(); // Execution stops here
+
+  //Two options 
+  // 
+  // 1. Click the "Open the applications queue" link and try and locate an item from an unsearchable list of applications
+  // 2. Filter results by ABN of new applicant with status "Pending" and click the "Legal Name" button for that application 
+  //
+
+  // Option 2. Filter on ABN, Select first application in the list with status "Pending", enter ABN and click the first "Legal Name" button for that application 
+  
+  await page.getByLabel('StatusAnypendingapprovedsuspendedrejectedwithdrawn').selectOption('pending');
+  await page.getByRole('textbox', { name: 'Search' }).click();
+  await page.getByRole('textbox', { name: 'Search' }).fill('33051775556');
+  await page.getByText('Search').click();
+ 
+  // Option 1: If known, click the first "Legal Name" button for the first application in the list with status "Pending"
+  //await page.getByRole('link', { name: 'Coastal PV Imports Pty Ltd' }).click();
+  //await page.getByText('CER-P-').click();
+  
+  //Option 2: locate the first cell in the first row and click the link in that cell, which should be the "Legal Name" button for the first application
+  const firstCell = page.locator('tbody tr').first().locator('td').first();
+  const link = firstCell.locator('a');
+  await link.click();
+
+
+  await page.getByRole('definition').filter({ hasText: 'pending' }).locator('span').click();
+  await page.getByRole('definition').filter({ hasText: 'Coastal PV Imports Pty Ltd' }).click();
+  
+  // use the ABN to ensure the correct application is being viewed, and that the status is "Pending"
+  // ABN
+  await expect(page.getByText('ABN')).toBeVisible();
+  const  correlation_abn = page.locator('dt:text-is("ABN") + dd');
+  expect(await correlation_abn.textContent()).toBe('33051775556');
+  
+
+  // expand the history and ensure status is pending where version is 1 
+  await page.getByText('History').click();
+
+  const organisation_details: OrganisationDetails = {
+
+    // orgnaisation details form fields   
+    legal_name: (await page.locator('dt:text-is("Legal name") + dd').textContent()) ?? '',
+    trading_name: (await page.locator('dt:text-is("Trading name") + dd').textContent()) ?? '',
+    abn: (await page.locator('dt:text-is("ABN") + dd').textContent()) ?? '',
+    participant_type: (await page.locator('dt:text-is("Type") + dd').textContent()) ?? '',
+  
+    // Primary contact details form fields
+    contact_name: (await page.locator('dt:text-is("Contact") + dd').textContent()) ?? '',
+    email: (await page.locator('dt:text-is("Email") + dd').textContent()) ?? '',
+    phone: (await page.locator('dt:text-is("Phone") + dd').textContent()) ?? '',
+
+    // Address details form fields
+    address: (await page.locator('dt:text-is("Address") + dd').textContent()) ?? '',
+    address_line_1: '',
+    address_line_2: '',
+    suburb: '',
+    postcode: '',
+    state: '',
+
+  }
+
+  const system_identifiers: SystemIdentifers = {
+
+    cer_id: (await page.locator('dt:text-is("Participant ID") + dd').textContent()) ?? '',
+    cer_lastupdated: (await page.locator('dt:text-is("Last updated") + dd').textContent()) ?? '',
+    cer_version: (await page.locator('dt:text-is("Record version") + dd').textContent()) ?? '',
+    application_status: (await page.locator('dt:text-is("Status") + dd').textContent()) ?? '',
+  
+  }
+  
+  //Click the Correct record / change status button to approve the application
+  await page.getByRole('button', { name: 'Correct record / change status' }).click();
+  
+  //BREAK POINT - pause the test to allow for manual inspection of the page and the form fields
+  //await page.pause(); // Execution stops here
+
+  //verify updateable form fields match organisation_details object, and that the status is still pending
+  
+  expect(await page.getByLabel('Legal name').inputValue()).toBe(organisation_details.legal_name);
+  expect(await page.getByLabel('Trading name (optional)').inputValue()).toBe(organisation_details.trading_name);
+  expect(await page.getByLabel('ABN').inputValue()).toBe(organisation_details.abn);
+  expect(await page.getByLabel('Participant type').inputValue()).toBe(organisation_details.participant_type);
+  expect(await page.getByLabel('Contact name').inputValue()).toBe(organisation_details.contact_name);
+  expect(await page.getByLabel('Email').inputValue()).toBe(organisation_details.email);
+  expect(await page.getByLabel('Phone').inputValue()).toBe(organisation_details.phone);
+  expect(organisation_details.address).toContain(await page.getByLabel('Address line 1').inputValue());
+  expect(organisation_details.address).toContain(await page.getByLabel('Address line 2 (optional)').inputValue());
+  expect(organisation_details.address).toContain(await page.getByLabel('Suburb').inputValue());
+  expect(organisation_details.address).toContain(await page.getByLabel('Postcode').inputValue());
+  expect(organisation_details.address).toContain(await page.getByLabel('StateACTNSWNTQLDSATASVICWA').inputValue());
+ 
+
+
+ 
+  if (action === "cancel") { 
+  
+    await page.getByRole('button', { name: 'Cancel' }).click();
+    
+    
+     
+    //BREAK POINT - pause the test to allow for manual inspection of the page and the form fields
+    // await page.pause(); // Execution stops here
+
+    //verify that values associated with labels match those in the organisation_details object, and that the status is still pending
+   
+    // Check fields unchanged
+    const organisation_update: OrganisationDetails = {
+
+      // orgnaisation details form fields   
+      legal_name: (await page.locator('dt:text-is("Legal name") + dd').textContent()) ?? '',
+      trading_name: (await page.locator('dt:text-is("Trading name") + dd').textContent()) ?? '',
+      abn: (await page.locator('dt:text-is("ABN") + dd').textContent()) ?? '',
+      participant_type: (await page.locator('dt:text-is("Type") + dd').textContent()) ?? '',
+    
+      // Primary contact details form fields
+      contact_name: (await page.locator('dt:text-is("Contact") + dd').textContent()) ?? '',
+      email: (await page.locator('dt:text-is("Email") + dd').textContent()) ?? '',
+      phone: (await page.locator('dt:text-is("Phone") + dd').textContent()) ?? '',
+
+      // Address details form fields
+      address: (await page.locator('dt:text-is("Address") + dd').textContent()) ?? '',
+      address_line_1: '',
+      address_line_2: '',
+      suburb: '',
+      postcode: '',
+      state: '',
+
+    }
+
+    const system_identifiers_update: SystemIdentifers = {
+
+    cer_id: (await page.locator('dt:text-is("Participant ID") + dd').textContent()) ?? '',
+    cer_lastupdated: (await page.locator('dt:text-is("Last updated") + dd').textContent()) ?? '',
+    cer_version: (await page.locator('dt:text-is("Record version") + dd').textContent()) ?? '',
+    application_status: (await page.locator('dt:text-is("Status") + dd').textContent()) ?? '',
+  
+  }
+
+    expect(organisation_update).toEqual(organisation_details);
+    expect(system_identifiers_update).toEqual(system_identifiers);
+    
+
+  }
+
+  // TODOS
+
+  //  await page.getByRole('button', { name: 'Save new version' }).click();
+
+
+  //Add cleanup code to revert to admin role and sign out, and verify that the user is logged out by checking for a distinctive element on the login page 
+
+});

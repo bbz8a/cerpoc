@@ -1,0 +1,137 @@
+1. Approved Retailers
+
+88622471218
+24472779421
+
+Actions
+
+organisation                Admin           User
+- update details                x
+
+devices
+- register model                x
+- register Unit                 x
+- record installation           x
+- Search  
+    - Units                     x
+    - Models                    x
+    - Installations             x
+    - Rejected submissions      x
+
+incidents
+- Report an incidents           x  
+- Search                        x
+
+recalls                         
+- Search                        x
+
+compliance
+- overdue                       x
+- inspections                   x
+- follow-ups                    x
+
+2. Approved Manufacturer
+
+41761309359
+19352645549
+
+Actions
+
+organisation                Admin           User
+- update details                x
+
+devices
+- register model                x
+- register Unit                 x
+- record installation           x
+- Search  
+    - Units                     x
+    - Models                    x
+    - Installations             x
+    - Rejected submissions      x
+
+incidents
+- Report an incidents           x  
+- Search                        x
+
+recalls                         
+- Search                        x
+
+compliance
+- overdue                       x
+- inspections                   x
+- follow-ups                    x
+
+
+3. Approved Installer
+
+73259453915
+76090796420
+20694238231
+97237581328 x
+
+Actions
+
+organisation                Admin           User
+- update details                x
+
+devices
+- register model                x
+- register Unit                 x
+- record installation           x
+- Search  
+    - Units                     x           x
+    - Models                    x           x
+    - Installations             x           x
+    - Rejected submissions      x           x
+
+incidents
+- Report an incidents           x           x
+- Search                        x           x
+
+recalls                         
+- Search                        x           x
+
+compliance
+- overdue                       x           x
+- inspections                   x           x
+- follow-ups                    x           x
+
+
+
+4. Withdrawn Importer              - Not a particpant
+
+33051775556
+
+5. Approved Aggregator
+
+87650706037
+12954758694
+
+Actions
+
+organisation                Admin           User
+- update details                x
+
+devices
+- register model                x
+- register Unit                 x
+- record installation           x
+- Search  
+    - Units                     x           x
+    - Models                    x           x
+    - Installations             x           x
+    - Rejected submissions      x           x
+
+incidents
+- Report an incidents           x           x
+- Search                        x           x
+
+recalls                         
+- Search                        x           x
+
+compliance
+- overdue                       x           x
+- inspections                   x           x
+- follow-ups                    x           x
+

@@ -1,0 +1,123 @@
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  // Add the login recording to its own page object
+  const username = process.env.CERP_USERNAME;
+  const password = process.env.CERP_PASSWORD;
+  const login_url = process.env.LOGIN_URL;
+  const role = "Applicant";
+ 
+  if (!username || !password || !login_url) {
+    throw new Error('Set CERP_USERNAME, CERP_PASSWORD, and LOGIN_URL before running this test.');
+  }
+
+  // Use the destination URL rather than the Outlook Safe Links wrapper.
+  await page.goto(login_url);
+  await page.getByLabel(/email|username/i).fill(username);
+  await page.getByLabel(/password/i).fill(password);
+  await page.getByRole('button', { name: /sign in|log in|login/i }).click();
+  
+  // Switcher is a sub comoponent of the topbar, maybe add a hover to the topbar to ensure the switcher is visible
+  // add hover here to ensure selector for role switch is visible, use locator to find the button by class name
+  await page.locator('button.identity-switcher__trigger.topbar__user').hover();
+  // select role option
+  await page.getByLabel('RoleCER adminCER').selectOption(role);
+  // switch role
+  await page.getByRole('button', { name: 'Switch' }).click();
+  // Add participant application recording to its own page objectFill all fields in the organisation details form, and submit the form
+  // fill legal name field
+  await page.getByRole('textbox', { name: 'Legal name' }).click();
+  await page.getByRole('textbox', { name: 'Legal name' }).fill('abc legal AUTOMATED');
+  //fill optional trading name field
+  await page.getByRole('textbox', { name: 'Trading name (optional)' }).click();
+  await page.getByRole('textbox', { name: 'Trading name (optional)' }).fill('abc trading AUTOMATED');
+  //fill ABN field
+  await page.getByRole('textbox', { name: 'ABN 11 digits' }).click();
+  await page.getByRole('textbox', { name: 'ABN 11 digits' }).fill('12345678901'); 
+  // select participant type from dropdown
+  // randomly select a participant type from the dropdown, either manufacturer or importer 
+  // Add enumaration for participant type, and randomly select one of the options
+
+
+  await page.getByLabel('Participant').selectOption('manufacturer');
+  await page.getByLabel('Participant').selectOption('importer');
+  await page.getByLabel('Participant').selectOption('installer');
+  await page.getByLabel('Participant').selectOption('retailer');
+  await page.getByLabel('Participant').selectOption('aggregator');
+
+  await page.getByLabel('Participant').selectOption('manufacturer');
+
+  // fill contact name field
+  await page.getByRole('textbox', { name: 'Contact name' }).click();
+  await page.getByRole('textbox', { name: 'Contact name' }).fill('abc contact AUTOMATED');
+  // fill email field
+  await page.getByRole('textbox', { name: 'Email' }).click();
+  await page.getByRole('textbox', { name: 'Email' }).fill('abc.contact@automated.com');
+  // fill phone field
+  await page.getByRole('textbox', { name: 'Phone' }).click();
+
+  await page.getByRole('textbox', { name: 'Phone' }).fill('0412345678');
+  // fill address line 1 field
+  await page.getByRole('textbox', { name: 'Address line 1' }).click();
+  await page.getByRole('textbox', { name: 'Address line 1' }).fill('123 Main Street');
+  // fill address line 2 field
+  await page.getByRole('textbox', { name: 'Address line 2 (optional)' }).click();
+  await page.getByRole('textbox', { name: 'Address line 2 (optional)' }).fill('Unit 4');
+  // fill suburb field
+  await page.getByRole('textbox', { name: 'Suburb' }).click();
+  await page.getByRole('textbox', { name: 'Suburb' }).fill('Sydney');
+  // Select a state from dropdown
+  await page.getByLabel('StateACTNSWNTQLDSATASVICWA').selectOption('ACT');
+  await page.getByLabel('StateACTNSWNTQLDSATASVICWA').selectOption('NSW');
+  await page.getByLabel('StateACTNSWNTQLDSATASVICWA').selectOption('NT');
+  await page.getByLabel('StateACTNSWNTQLDSATASVICWA').selectOption('QLD');
+  await page.getByLabel('StateACTNSWNTQLDSATASVICWA').selectOption('SA');
+  await page.getByLabel('StateACTNSWNTQLDSATASVICWA').selectOption('TAS');
+  await page.getByLabel('StateACTNSWNTQLDSATASVICWA').selectOption('VIC');
+  await page.getByLabel('StateACTNSWNTQLDSATASVICWA').selectOption('WA');
+  await page.getByLabel('StateACTNSWNTQLDSATASVICWA').selectOption('ACT');
+  
+  // fill postcode field, ensure it matches state main city
+  await page.getByRole('textbox', { name: 'Legal name' }).click();
+  await page.getByRole('textbox', { name: 'Postcode' }).click();
+  await page.getByRole('textbox', { name: 'Postcode' }).fill('2000');
+
+  // Declarations
+  // 
+
+  await page.getByRole('checkbox', { name: 'I am authorised to apply on' }).check();
+  await page.getByRole('checkbox', { name: 'The information provided is' }).check(); 
+
+  await page.getByRole('textbox', { name: 'Evidence notes (optional)' }).fill('Test evidence optional notes Automated');
+  
+  
+  //switch back to admin role and sign out
+  await page.locator('button.identity-switcher__trigger.topbar__user').hover();
+  await page.getByLabel('RoleCER adminCER').selectOption('cer_admin');
+  await page.getByRole('button', { name: 'Switch' }).click();
+
+  // wait for the next page to load before signing out
+  await page.waitForLoadState('networkidle');
+
+  //hover over signout button 
+
+  await page.getByRole('button', { name: 'Sign out' }).hover()
+  await page.getByRole('button', { name: 'Sign out' }).click();
+
+  await expect(page.getByRole('button', { name: 'Sign out' })).not.toBeVisible();
+
+  const current_url = page.url();
+
+  await test.step ('Capture page URL', async () => {
+    console.log(`Logged in URL: ${current_url}`);
+    expect(current_url).toMatch(login_url);
+  }); 
+
+  await page.goto("about:blank");
+
+  await page.goto(login_url);
+  await page.getByLabel(/email|username/i).fill(username);
+  await page.getByLabel(/password/i).fill("wrongpassword");
+  await page.getByRole('button', { name: /sign in|log in|login/i }).click();
+
+});

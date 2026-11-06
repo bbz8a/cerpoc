@@ -1,0 +1,98 @@
+
+// APPROVE APPLICATION
+Login as a CER Officer
+Search a participant application in Pending Status
+Approve the application
+Verify updated application
+
+
+// REFINEMENT
+
+// Search for each type of participant 
+ParticipantTypes = {Installer,Manufacturer,Retailer,Aggregator,Importer}
+
+For Each ParticipantType in ParticipantTypes
+
+    Search by participant applications by Pending Status and ParticipantType
+    If OneMatchExists 
+        Approve the application
+        Verify updated application
+    Else
+        Log the missing ParticipantType
+    End If 
+Next   
+
+
+
+Actions                                     Admin       Officer
+
+Participant
+- Search                                    x           x
+- Correct details                           x           ?
+- Update Status                             x           x
+
+Device Register             
+- Register Model                            x
+- Register Unit                             x
+- Record Installation                       x
+- Search                                    x           x
+
+incidents
+- Report an incidents                       x           x
+- Search                                    x           x
+
+recalls                         
+- Search                                    x           x
+- Raise                                     x
+
+Exchange
+- Interface catalogue                       x
+- Outbox                                    x
+- Inbox                                     x
+- Dead Letters                              x
+- Reconciliation                            x
+    - Reconcile AEMO now                    x
+    - Reconcile STC registry now            x
+    - Reconcile Network operator now        x
+
+compliance monitoring
+- risk view                                 x           
+  - monitoring rules & runs                 x
+  - cases
+    - compliance cases                      x
+- new monitoring rule                       x           
+  - publish
+- search                                    x           
+
+Reports
+- Run                                       x
+- Download CSV                              x
+- Filter                                    x
+
+Audit trail
+- Compliance activity Report                x
+- Cases                                     x
+- Search                                    x
+
+Users 
+- Search                                    x
+  - User
+    - details                               x
+    - open in audit trail                   x
+    - all users                             x
+
+Email test
+- Queue mail                                x
+- View by ide
+
+ntity                          x
+
+
+
+
+
+
+
+
+
+
