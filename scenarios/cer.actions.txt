@@ -29,7 +29,7 @@ Actions                                     Admin       Officer
 Participant
 - Search                                    x           x
 - Correct details                           x           ?
-- Update Status                             x           x
+- Update Status                             ?           x
 
 Device Register             
 - Register Model                            x

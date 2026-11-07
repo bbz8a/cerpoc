@@ -1,0 +1,3 @@
+CERP_USERNAME=your_username
+CERP_PASSWORD=your_password
+LOGIN_URL=application_login_url
