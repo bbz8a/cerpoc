@@ -1,0 +1,254 @@
+[
+  {
+    "manufacturer": "Astronergy",
+    "abn": "61511173608",
+    "modelNumber": "CHSM54N-HC-450",
+    "modelName": "ASTRO N5",
+    "ratedOutputAtSTC": 450,
+    "cellTechnology": "N-Type TOPCon",
+    "base": "China"
+  },
+  {
+    "manufacturer": "Astronergy",
+    "abn": "61511173608",
+    "modelNumber": "CHSM54N-HC-460",
+    "modelName": "ASTRO N5 Plus",
+    "ratedOutputAtSTC": 460,
+    "cellTechnology": "N-Type TOPCon",
+    "base": "China"
+  },
+  {
+    "manufacturer": "Astronergy",
+    "abn": "61511173608",
+    "modelNumber": "CHSM72N-HC-615",
+    "modelName": "ASTRO Utility",
+    "ratedOutputAtSTC": 615,
+    "cellTechnology": "N-Type TOPCon",
+    "base": "China"
+  },
+  {
+    "manufacturer": "Astronergy",
+    "abn": "61511173608",
+    "modelNumber": "CHSM72N-HC-635",
+    "modelName": "ASTRO Utility Max",
+    "ratedOutputAtSTC": 635,
+    "cellTechnology": "N-Type TOPCon",
+    "base": "China"
+  },
+  {
+    "manufacturer": "Canadian Solar",
+    "abn": "61311173419",
+    "modelNumber": "CS6R-440MS",
+    "modelName": "HiKu6 Mono",
+    "ratedOutputAtSTC": 440,
+    "cellTechnology": "Mono PERC",
+    "base": "Canada"
+  },
+  {
+    "manufacturer": "Canadian Solar",
+    "abn": "61311173419",
+    "modelNumber": "CS6R-445MS",
+    "modelName": "HiKu6 Plus",
+    "ratedOutputAtSTC": 445,
+    "cellTechnology": "Mono PERC",
+    "base": "Canada"
+  },
+  {
+    "manufacturer": "Canadian Solar",
+    "abn": "61311173419",
+    "modelNumber": "CS6R-460MS",
+    "modelName": "HiKu6 Black",
+    "ratedOutputAtSTC": 460,
+    "cellTechnology": "Mono PERC",
+    "base": "Canada"
+  },
+  {
+    "manufacturer": "Canadian Solar",
+    "abn": "61311173419",
+    "modelNumber": "CS7L-595MS",
+    "modelName": "BiHiKu",
+    "ratedOutputAtSTC": 595,
+    "cellTechnology": "Mono PERC",
+    "base": "Canada"
+  },
+  {
+    "manufacturer": "Canadian Solar",
+    "abn": "61311173419",
+    "modelNumber": "CS7N-680MS",
+    "modelName": "HiKu7 Max",
+    "ratedOutputAtSTC": 680,
+    "cellTechnology": "N-Type TOPCon",
+    "base": "Canada"
+  },
+  {
+    "manufacturer": "Canadian Solar",
+    "abn": "61311173419",
+    "modelNumber": "CS7N-700MS",
+    "modelName": "HiKu7",
+    "ratedOutputAtSTC": 700,
+    "cellTechnology": "N-Type TOPCon",
+    "base": "Canada"
+  },
+  {
+    "manufacturer": "First Solar",
+    "abn": "80411176515",
+    "modelNumber": "FS7-525",
+    "modelName": "Series 7 Utility",
+    "ratedOutputAtSTC": 525,
+    "cellTechnology": "Thin Film CdTe",
+    "base": "USA"
+  },
+  {
+    "manufacturer": "First Solar",
+    "abn": "80411176515",
+    "modelNumber": "FS-7 540",
+    "modelName": "Series 7",
+    "ratedOutputAtSTC": 540,
+    "cellTechnology": "Thin Film CdTe",
+    "base": "USA"
+  },
+  {
+    "manufacturer": "First Solar",
+    "abn": "80411176515",
+    "modelNumber": "FS7-540",
+    "modelName": "Series 7 Plus",
+    "ratedOutputAtSTC": 540,
+    "cellTechnology": "Thin Film CdTe",
+    "base": "USA"
+  },
+  {
+    "manufacturer": "First Solar",
+    "abn": "80411176515",
+    "modelNumber": "FS7-550",
+    "modelName": "Series 7 Max",
+    "ratedOutputAtSTC": 550,
+    "cellTechnology": "Thin Film CdTe",
+    "base": "USA"
+  },
+  {
+    "manufacturer": "First Solar",
+    "abn": "80411176515",
+    "modelNumber": "FS7-560",
+    "modelName": "Series 7 Ultra",
+    "ratedOutputAtSTC": 560,
+    "cellTechnology": "Thin Film CdTe",
+    "base": "USA"
+  },
+  {
+    "manufacturer": "Jinko Solar",
+    "abn": "80411171207",
+    "modelNumber": "JKM440N-54HL4R-V",
+    "modelName": "Tiger Neo 54HL4R-V",
+    "ratedOutputAtSTC": 440,
+    "cellTechnology": "N-Type TOPCon",
+    "base": "China"
+  },
+  {
+    "manufacturer": "Jinko Solar",
+    "abn": "80411171207",
+    "modelNumber": "JKM450N-54HL4R-BDV",
+    "modelName": "Tiger Neo Black",
+    "ratedOutputAtSTC": 450,
+    "cellTechnology": "N-Type TOPCon",
+    "base": "China"
+  },
+  {
+    "manufacturer": "Jinko Solar",
+    "abn": "80411171207",
+    "modelNumber": "JKM460N-54HL4R-V",
+    "modelName": "Tiger Neo Plus",
+    "ratedOutputAtSTC": 460,
+    "cellTechnology": "N-Type TOPCon",
+    "base": "China"
+  },
+  {
+    "manufacturer": "Jinko Solar",
+    "abn": "80411171207",
+    "modelNumber": "JKM475N-60HL4-V",
+    "modelName": "Tiger Neo 60HL4-V",
+    "ratedOutputAtSTC": 475,
+    "cellTechnology": "N-Type TOPCon",
+    "base": "China"
+  },
+  {
+    "manufacturer": "Jinko Solar",
+    "abn": "80411171207",
+    "modelNumber": "JKM585N-72HL4-BDV",
+    "modelName": "Tiger Neo Utility",
+    "ratedOutputAtSTC": 585,
+    "cellTechnology": "N-Type TOPCon",
+    "base": "China"
+  },
+  {
+    "manufacturer": "Jinko Solar",
+    "abn": "80411171207",
+    "modelNumber": "JKM620N-78HL4-BDV",
+    "modelName": "Tiger Neo Pro",
+    "ratedOutputAtSTC": 620,
+    "cellTechnology": "N-Type TOPCon",
+    "base": "China"
+  },
+  {
+    "manufacturer": "Qcells",
+    "abn": "96211179297",
+    "modelNumber": "Q.PEAK DUO ML-G11S+ 480",
+    "modelName": "Q.PEAK DUO G11S+",
+    "ratedOutputAtSTC": 480,
+    "cellTechnology": "Mono PERC",
+    "base": "Korea"
+  },
+  {
+    "manufacturer": "REC",
+    "abn": "27211174290",
+    "modelNumber": "REC440AA Pure-R",
+    "modelName": "Alpha Pure-R",
+    "ratedOutputAtSTC": 440,
+    "cellTechnology": "HJT",
+    "base": "Singapore"
+  },
+  {
+    "manufacturer": "REC",
+    "abn": "27211174290",
+    "modelNumber": "REC450AA Pure-R",
+    "modelName": "Alpha Pure",
+    "ratedOutputAtSTC": 450,
+    "cellTechnology": "HJT",
+    "base": "Singapore"
+  },
+  {
+    "manufacturer": "REC",
+    "abn": "27211174290",
+    "modelNumber": "REC465AA Pure-RX",
+    "modelName": "Alpha Pure-RX+",
+    "ratedOutputAtSTC": 465,
+    "cellTechnology": "HJT",
+    "base": "Singapore"
+  },
+  {
+    "manufacturer": "REC",
+    "abn": "27211174290",
+    "modelNumber": "REC470AA Pure-RX",
+    "modelName": "Alpha Pure-RX",
+    "ratedOutputAtSTC": 470,
+    "cellTechnology": "HJT",
+    "base": "Singapore"
+  },
+  {
+    "manufacturer": "REC",
+    "abn": "27211174290",
+    "modelNumber": "REC470AA Pro",
+    "modelName": "Alpha Pro",
+    "ratedOutputAtSTC": 470,
+    "cellTechnology": "HJT",
+    "base": "Singapore"
+  },
+  {
+    "manufacturer": "REC",
+    "abn": "27211174290",
+    "modelNumber": "REC480AA Ultra",
+    "modelName": "Alpha Ultra",
+    "ratedOutputAtSTC": 480,
+    "cellTechnology": "HJT",
+    "base": "Singapore"
+  }
+]

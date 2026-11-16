@@ -1,0 +1,162 @@
+[
+  {
+    "manufacturer": "PowerPlus Energy",
+    "businessAddress": "2 Koornang Rd, Scoresby VIC 3179, Australia",
+    "deviceType": "PV_battery",
+    "deviceId": "PPE-ECO4840P",
+    "deviceName": "Eco4840P 4.0kWh LiFePO4 Battery Module",
+    "countryOfOrigin": "Australia"
+  },
+  {
+    "manufacturer": "sonnen Australia",
+    "businessAddress": "Level 3, 1-3 Metro Parade, Mawson Lakes SA 5095, Australia",
+    "deviceType": "PV_battery",
+    "deviceId": "SON-EVO-11",
+    "deviceName": "sonnenBatterie Evo 11kWh",
+    "countryOfOrigin": "Australia"
+  },
+  {
+    "manufacturer": "Zenaji",
+    "businessAddress": "2 Shearson Cres, Mentone VIC 3194, Australia",
+    "deviceType": "PV_battery",
+    "deviceId": "ZEN-AEON-48",
+    "deviceName": "Zenaji Aeon LTO Battery",
+    "countryOfOrigin": "Australia"
+  },
+  {
+    "manufacturer": "RedEarth Energy Storage",
+    "businessAddress": "15 Fienta Pl, Darra QLD 4076, Australia",
+    "deviceType": "PV_battery",
+    "deviceId": "RE-TROPO-4841",
+    "deviceName": "Troppo-4841 Self-Managed Lithium Battery",
+    "countryOfOrigin": "Australia"
+  },
+  {
+    "manufacturer": "Sungrow",
+    "businessAddress": "Level 7, 1 Elizabeth Plaza, North Sydney NSW 2060, Australia",
+    "deviceType": "PV_battery",
+    "deviceId": "SG-SBR128",
+    "deviceName": "Sungrow SBR128 High Voltage LFP Battery",
+    "countryOfOrigin": "China"
+  },
+  {
+    "manufacturer": "Sigenergy",
+    "businessAddress": "Suite 02, Level 37, 88 Walker St, North Sydney NSW 2060, Australia",
+    "deviceType": "PV_battery",
+    "deviceId": "SIG-STOR-BAT-8.0",
+    "deviceName": "SigenStor Battery Module 8.0kWh",
+    "countryOfOrigin": "China"
+  },
+  {
+    "manufacturer": "Tesla",
+    "businessAddress": "546 Gardeners Rd, Alexandria NSW 2015, Australia",
+    "deviceType": "PV_battery",
+    "deviceId": "TSL-PW3-13.5",
+    "deviceName": "Tesla Powerwall 3",
+    "countryOfOrigin": "United States"
+  },
+  {
+    "manufacturer": "BYD (FinDreams Battery)",
+    "businessAddress": "188 Parramatta Rd, Homebush NSW 2140, Australia",
+    "deviceType": "EV_battery",
+    "deviceId": "BYD-BLADE-60.48",
+    "deviceName": "BYD Blade LFP Traction Battery Pack (60.48kWh)",
+    "countryOfOrigin": "China"
+  },
+  {
+    "manufacturer": "CATL",
+    "businessAddress": "No. 2 Xingang Rd, Zhangwan District, Ningde, Fujian, China",
+    "deviceType": "EV_battery",
+    "deviceId": "CATL-QILIN-100",
+    "deviceName": "CATL Qilin CTP 3.0 EV Battery Pack",
+    "countryOfOrigin": "China"
+  },
+  {
+    "manufacturer": "LG Energy Solution",
+    "businessAddress": "108 Yeoui-daero, Yeongdeungpo-gu, Seoul, South Korea",
+    "deviceType": "EV_battery",
+    "deviceId": "LGES-NCMA-77.4",
+    "deviceName": "LGES NCMA Pouch Cell EV Pack",
+    "countryOfOrigin": "South Korea"
+  },
+  {
+    "manufacturer": "Tesla",
+    "businessAddress": "546 Gardeners Rd, Alexandria NSW 2015, Australia",
+    "deviceType": "EV_battery",
+    "deviceId": "TSL-4680-STR",
+    "deviceName": "Tesla 4680 Structural EV Battery Pack",
+    "countryOfOrigin": "United States"
+  },
+  {
+    "manufacturer": "ReVolt Energy Group",
+    "businessAddress": "Level 2, 11 York St, Sydney NSW 2000, Australia",
+    "deviceType": "ev_revolt_charger",
+    "deviceId": "RVT-CHG-DC150",
+    "deviceName": "ReVolt Ultrafast DC EV Charger & BESS Node",
+    "countryOfOrigin": "Canada"
+  },
+  {
+    "manufacturer": "Revolt Motors",
+    "businessAddress": "Plot No. 10, Sector 32, Gurugram, Haryana 122001, India",
+    "deviceType": "ev_revolt_charger",
+    "deviceId": "RVT-RV400-CHG",
+    "deviceName": "Revolt RV400 EV Fast Charger (72V 15A)",
+    "countryOfOrigin": "India"
+  },
+  {
+    "manufacturer": "Tritium",
+    "businessAddress": "48 Miller St, Murarrie QLD 4172, Australia",
+    "deviceType": "ev_revolt_charger",
+    "deviceId": "TRI-RTM75",
+    "deviceName": "Tritium RTM75 DC Fast Charger",
+    "countryOfOrigin": "Australia"
+  },
+  {
+    "manufacturer": "myenergi",
+    "businessAddress": "40 Robbs Rd, West Footscray VIC 3012, Australia",
+    "deviceType": "ev_revolt_charger",
+    "deviceId": "MYE-ZAPPI-2H22TW",
+    "deviceName": "myenergi zappi 22kW Smart EV Charger",
+    "countryOfOrigin": "United Kingdom"
+  },
+  {
+    "manufacturer": "Fronius",
+    "businessAddress": "90-92 Lambeck Dr, Tullamarine VIC 3043, Australia",
+    "deviceType": "inverter",
+    "deviceId": "FRN-GEN24-10.0",
+    "deviceName": "Fronius Primo GEN24 10.0 Plus Hybrid Inverter",
+    "countryOfOrigin": "Austria"
+  },
+  {
+    "manufacturer": "SMA Solar Technology",
+    "businessAddress": "Level 8, 76 Berry St, North Sydney NSW 2060, Australia",
+    "deviceType": "inverter",
+    "deviceId": "SMA-STP10.0-3SE",
+    "deviceName": "SMA Sunny Tripower Smart Energy 10kW",
+    "countryOfOrigin": "Germany"
+  },
+  {
+    "manufacturer": "Sungrow",
+    "businessAddress": "Level 7, 1 Elizabeth Plaza, North Sydney NSW 2060, Australia",
+    "deviceType": "inverter",
+    "deviceId": "SG-SH10RT",
+    "deviceName": "Sungrow SH10RT 10kW Three-Phase Hybrid Inverter",
+    "countryOfOrigin": "China"
+  },
+  {
+    "manufacturer": "GoodWe",
+    "businessAddress": "2/6 Enterprise Dr, Rowville VIC 3178, Australia",
+    "deviceType": "inverter",
+    "deviceId": "GW-10K-ET",
+    "deviceName": "GoodWe ET Series 10kW Hybrid Inverter",
+    "countryOfOrigin": "China"
+  },
+  {
+    "manufacturer": "Enphase Energy",
+    "businessAddress": "88 Market St, South Melbourne VIC 3205, Australia",
+    "deviceType": "inverter",
+    "deviceId": "ENP-IQ8AC-72-M",
+    "deviceName": "Enphase IQ8AC Microinverter",
+    "countryOfOrigin": "United States"
+  }
+]

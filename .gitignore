@@ -7,3 +7,9 @@ node_modules/
 /playwright/.cache/
 /playwright/.auth/
 .env
+
+# Local transaction cache (per environment)
+/data/cache/
+
+# Exploration output (screenshots, aria dumps, saved bearer tokens)
+/explore/out/

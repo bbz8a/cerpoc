@@ -1,0 +1,768 @@
+{
+ "scrapedAt": "2026-11-16T19:40:00.000Z",
+ "source": "/cer/api-information",
+ "calls": {
+  "POST /api/auth/login": {
+   "name": "Sign in",
+   "step": "Step 1: Sign in",
+   "auth": false,
+   "view": "/cer/api-information?call=sign-in",
+   "who": "Anyone with a local account. Organisations that sign in with Microsoft Entra do not use this call.",
+   "params": [
+    {
+     "name": "username",
+     "in": "body",
+     "required": true
+    },
+    {
+     "name": "password",
+     "in": "body",
+     "required": true
+    }
+   ]
+  },
+  "GET /api/auth/config": {
+   "name": "Get the sign-in settings",
+   "step": "Step 1: Sign in",
+   "auth": false,
+   "view": "/cer/api-information?call=auth-config",
+   "who": "Anyone, before signing in.",
+   "params": []
+  },
+  "POST /api/auth/register": {
+   "name": "Create an account",
+   "step": "Step 2: Create an account",
+   "auth": false,
+   "view": "/cer/api-information?call=register",
+   "who": "Anyone whose email address is on the registration list. Only available when self-registration is switched on.",
+   "params": [
+    {
+     "name": "email",
+     "in": "body",
+     "required": true
+    },
+    {
+     "name": "displayName",
+     "in": "body",
+     "required": true
+    },
+    {
+     "name": "password",
+     "in": "body",
+     "required": true
+    }
+   ]
+  },
+  "POST /api/auth/verify-email": {
+   "name": "Confirm your email address",
+   "step": "Step 2: Create an account",
+   "auth": false,
+   "view": "/cer/api-information?call=verify-email",
+   "who": "Anyone with the link from a verification email. Portals that sign people in through another provider do not use this call.",
+   "params": [
+    {
+     "name": "token",
+     "in": "body",
+     "required": true
+    }
+   ]
+  },
+  "POST /api/auth/resend-verification": {
+   "name": "Send a new verification link",
+   "step": "Step 2: Create an account",
+   "auth": false,
+   "view": "/cer/api-information?call=resend-verification",
+   "who": "Anyone whose account is still waiting for its email address to be confirmed.",
+   "params": [
+    {
+     "name": "email",
+     "in": "body",
+     "required": true
+    }
+   ]
+  },
+  "POST /api/applications": {
+   "name": "Start your application",
+   "step": "Step 3: Prepare your application",
+   "auth": true,
+   "view": "/cer/api-information?call=start-application",
+   "who": "A signed-in applicant who does not already have an application in progress.",
+   "params": [
+    {
+     "name": "details",
+     "in": "body",
+     "required": true
+    },
+    {
+     "name": "declarations",
+     "in": "body",
+     "required": false
+    }
+   ]
+  },
+  "GET /api/applications/mine": {
+   "name": "Get my application",
+   "step": "Step 3: Prepare your application",
+   "auth": true,
+   "view": "/cer/api-information?call=my-application",
+   "who": "A signed-in applicant.",
+   "params": []
+  },
+  "PUT /api/applications/{id}": {
+   "name": "Save changes to your application",
+   "step": "Step 3: Prepare your application",
+   "auth": true,
+   "view": "/cer/api-information?call=save-application",
+   "who": "The applicant who started the application. Changes are refused once it has been submitted.",
+   "params": [
+    {
+     "name": "id",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "details",
+     "in": "body",
+     "required": true
+    },
+    {
+     "name": "declarations",
+     "in": "body",
+     "required": false
+    }
+   ]
+  },
+  "GET /api/participants/me": {
+   "name": "Get your organisation record",
+   "step": "Step 3: Prepare your application",
+   "auth": true,
+   "view": "/cer/api-information?call=my-organisation",
+   "who": "Signed-in users whose account is linked to an organisation.",
+   "params": []
+  },
+  "PATCH /api/participants/me": {
+   "name": "Update your organisation details",
+   "step": "Step 3: Prepare your application",
+   "auth": true,
+   "view": "/cer/api-information?call=update-my-organisation",
+   "who": "Participant administrators of an approved organisation.",
+   "params": [
+    {
+     "name": "details",
+     "in": "body",
+     "required": true
+    },
+    {
+     "name": "changeReason",
+     "in": "body",
+     "required": true
+    }
+   ]
+  },
+  "POST /api/applications/{id}/submit": {
+   "name": "Submit your application",
+   "step": "Step 4: Submit your application",
+   "auth": true,
+   "view": "/cer/api-information?call=submit-application",
+   "who": "The applicant who started the application.",
+   "params": [
+    {
+     "name": "id",
+     "in": "path",
+     "required": true
+    }
+   ]
+  },
+  "GET /api/applications": {
+   "name": "List applications",
+   "step": "Step 5: CER assesses the application",
+   "auth": true,
+   "view": "/cer/api-information?call=list-applications",
+   "who": "CER staff who assess applications.",
+   "params": [
+    {
+     "name": "status",
+     "in": "query",
+     "required": false
+    }
+   ]
+  },
+  "POST /api/applications/{id}/decision": {
+   "name": "Record a decision",
+   "step": "Step 5: CER assesses the application",
+   "auth": true,
+   "view": "/cer/api-information?call=decide-application",
+   "who": "CER staff who assess applications.",
+   "params": [
+    {
+     "name": "id",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "decision",
+     "in": "body",
+     "required": true
+    },
+    {
+     "name": "reason",
+     "in": "body",
+     "required": true
+    }
+   ]
+  },
+  "POST /api/participants/me/users": {
+   "name": "Invite a team member",
+   "step": "Step 6: Add your team",
+   "auth": true,
+   "view": "/cer/api-information?call=invite-user",
+   "who": "Participant administrators.",
+   "params": [
+    {
+     "name": "username",
+     "in": "body",
+     "required": true
+    },
+    {
+     "name": "displayName",
+     "in": "body",
+     "required": true
+    },
+    {
+     "name": "role",
+     "in": "body",
+     "required": true
+    },
+    {
+     "name": "password",
+     "in": "body",
+     "required": false
+    },
+    {
+     "name": "email",
+     "in": "body",
+     "required": false
+    },
+    {
+     "name": "requireEmailVerification",
+     "in": "body",
+     "required": false
+    }
+   ]
+  },
+  "PATCH /api/participants/me/users/{id}": {
+   "name": "Change a team member",
+   "step": "Step 6: Add your team",
+   "auth": true,
+   "view": "/cer/api-information?call=update-user",
+   "who": "Participant administrators.",
+   "params": [
+    {
+     "name": "id",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "role",
+     "in": "body",
+     "required": false
+    },
+    {
+     "name": "disabled",
+     "in": "body",
+     "required": false
+    }
+   ]
+  },
+  "GET /api/participants/me/users": {
+   "name": "List team members",
+   "step": "Step 6: Add your team",
+   "auth": true,
+   "view": "/cer/api-information?call=list-users",
+   "who": "Signed-in users of a participant organisation.",
+   "params": []
+  },
+  "GET /api/devices/rules/classes/{deviceClass}/current": {
+   "name": "Get the rules for a device type",
+   "step": "Step 7: Register your devices",
+   "auth": true,
+   "view": "/cer/api-information?call=device-rules",
+   "who": "Any signed-in user who registers devices.",
+   "params": [
+    {
+     "name": "deviceClass",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "on",
+     "in": "query",
+     "required": false
+    }
+   ]
+  },
+  "POST /api/devices/models": {
+   "name": "Register a device model",
+   "step": "Step 7: Register your devices",
+   "auth": true,
+   "view": "/cer/api-information?call=register-model",
+   "who": "Participants who make devices and are approved. CER staff can register a model on behalf of a manufacturer.",
+   "params": [
+    {
+     "name": "manufacturerId",
+     "in": "body",
+     "required": false
+    },
+    {
+     "name": "deviceClass",
+     "in": "body",
+     "required": true
+    },
+    {
+     "name": "modelNumber",
+     "in": "body",
+     "required": true
+    },
+    {
+     "name": "name",
+     "in": "body",
+     "required": true
+    },
+    {
+     "name": "attributes",
+     "in": "body",
+     "required": false
+    },
+    {
+     "name": "effectiveDate",
+     "in": "body",
+     "required": false
+    }
+   ]
+  },
+  "POST /api/devices/units": {
+   "name": "Register a device unit",
+   "step": "Step 7: Register your devices",
+   "auth": true,
+   "view": "/cer/api-information?call=register-unit",
+   "who": "Approved participants who own the unit, and CER staff on their behalf.",
+   "params": [
+    {
+     "name": "modelId",
+     "in": "body",
+     "required": true
+    },
+    {
+     "name": "ownerParticipantId",
+     "in": "body",
+     "required": false
+    },
+    {
+     "name": "serial",
+     "in": "body",
+     "required": true
+    },
+    {
+     "name": "batch",
+     "in": "body",
+     "required": false
+    },
+    {
+     "name": "attributes",
+     "in": "body",
+     "required": false
+    },
+    {
+     "name": "effectiveDate",
+     "in": "body",
+     "required": false
+    }
+   ]
+  },
+  "POST /api/devices/installations": {
+   "name": "Record an installation",
+   "step": "Step 7: Register your devices",
+   "auth": true,
+   "view": "/cer/api-information?call=register-installation",
+   "who": "Approved installers, and CER staff on their behalf.",
+   "params": [
+    {
+     "name": "unitId",
+     "in": "body",
+     "required": true
+    },
+    {
+     "name": "installerParticipantId",
+     "in": "body",
+     "required": false
+    },
+    {
+     "name": "nmi",
+     "in": "body",
+     "required": true
+    },
+    {
+     "name": "address",
+     "in": "body",
+     "required": true
+    },
+    {
+     "name": "commissionedOn",
+     "in": "body",
+     "required": true
+    },
+    {
+     "name": "attributes",
+     "in": "body",
+     "required": false
+    }
+   ]
+  },
+  "GET /api/devices/models": {
+   "name": "List device models",
+   "step": "Step 7: Register your devices",
+   "auth": true,
+   "view": "/cer/api-information?call=list-models",
+   "who": "Participant users, participant administrators and CER staff.",
+   "params": [
+    {
+     "name": "q",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "manufacturerId",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "deviceClass",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "status",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "catalogue",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "limit",
+     "in": "query",
+     "required": false
+    }
+   ]
+  },
+  "GET /api/devices/units": {
+   "name": "List device units",
+   "step": "Step 7: Register your devices",
+   "auth": true,
+   "view": "/cer/api-information?call=list-units",
+   "who": "Participant users, participant administrators and CER staff.",
+   "params": [
+    {
+     "name": "q",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "modelId",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "ownerParticipantId",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "deviceClass",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "status",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "complianceStatus",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "limit",
+     "in": "query",
+     "required": false
+    }
+   ]
+  },
+  "POST /api/devices/units/{id}/transfer": {
+   "name": "Transfer a unit to another owner",
+   "step": "Step 7: Register your devices",
+   "auth": true,
+   "view": "/cer/api-information?call=transfer-unit",
+   "who": "Participant administrators of the organisation that owns the unit, and CER staff.",
+   "params": [
+    {
+     "name": "id",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "newOwnerParticipantId",
+     "in": "body",
+     "required": true
+    },
+    {
+     "name": "changeReason",
+     "in": "body",
+     "required": true
+    },
+    {
+     "name": "evidenceRef",
+     "in": "body",
+     "required": false
+    }
+   ]
+  },
+  "GET /api/devices/installations": {
+   "name": "List installations",
+   "step": "Step 7: Register your devices",
+   "auth": true,
+   "view": "/cer/api-information?call=list-installations",
+   "who": "Participant users, participant administrators and CER staff.",
+   "params": [
+    {
+     "name": "q",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "unitId",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "installerParticipantId",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "status",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "geocodeStatus",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "limit",
+     "in": "query",
+     "required": false
+    }
+   ]
+  },
+  "POST /api/devices/installations/{id}/decommission": {
+   "name": "Decommission an installation",
+   "step": "Step 7: Register your devices",
+   "auth": true,
+   "view": "/cer/api-information?call=decommission-installation",
+   "who": "Participant administrators of the installing organisation, and CER staff.",
+   "params": [
+    {
+     "name": "id",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "decommissionedOn",
+     "in": "body",
+     "required": true
+    },
+    {
+     "name": "changeReason",
+     "in": "body",
+     "required": true
+    },
+    {
+     "name": "evidenceRef",
+     "in": "body",
+     "required": false
+    }
+   ]
+  },
+  "POST /api/auth/forgot-password": {
+   "name": "Request a password reset link",
+   "step": "Other calls",
+   "auth": false,
+   "view": "/cer/api-information?call=forgot-password",
+   "who": "Anyone who has forgotten their password.",
+   "params": [
+    {
+     "name": "email",
+     "in": "body",
+     "required": true
+    }
+   ]
+  },
+  "POST /api/auth/reset-password": {
+   "name": "Set a new password",
+   "step": "Other calls",
+   "auth": false,
+   "view": "/cer/api-information?call=reset-password",
+   "who": "Anyone with the reset link from their email.",
+   "params": [
+    {
+     "name": "token",
+     "in": "body",
+     "required": true
+    },
+    {
+     "name": "newPassword",
+     "in": "body",
+     "required": true
+    }
+   ]
+  },
+  "GET /api/auth/me": {
+   "name": "Get your signed-in profile",
+   "step": "Other calls",
+   "auth": true,
+   "view": "/cer/api-information?call=me",
+   "who": "Any signed-in user.",
+   "params": []
+  },
+  "POST /api/auth/password": {
+   "name": "Change your password",
+   "step": "Other calls",
+   "auth": true,
+   "view": "/cer/api-information?call=change-password",
+   "who": "Any signed-in user with a password account.",
+   "params": [
+    {
+     "name": "currentPassword",
+     "in": "body",
+     "required": true
+    },
+    {
+     "name": "newPassword",
+     "in": "body",
+     "required": true
+    }
+   ]
+  },
+  "POST /api/auth/logout": {
+   "name": "Sign out",
+   "step": "Other calls",
+   "auth": true,
+   "view": "/cer/api-information?call=logout",
+   "who": "Any signed-in user.",
+   "params": []
+  },
+  "GET /api/participants/me/history": {
+   "name": "Get the organisation change history",
+   "step": "Other calls",
+   "auth": true,
+   "view": "/cer/api-information?call=my-organisation-history",
+   "who": "Signed-in users whose account is linked to an organisation.",
+   "params": []
+  },
+  "PATCH /api/devices/models/{id}/status": {
+   "name": "Approve or withdraw a device model",
+   "step": "Other calls",
+   "auth": true,
+   "view": "/cer/api-information?call=set-model-status",
+   "who": "CER staff only.",
+   "params": [
+    {
+     "name": "id",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "status",
+     "in": "body",
+     "required": true
+    },
+    {
+     "name": "changeReason",
+     "in": "body",
+     "required": true
+    },
+    {
+     "name": "evidenceRef",
+     "in": "body",
+     "required": false
+    }
+   ]
+  },
+  "PATCH /api/devices/units/{id}/status": {
+   "name": "Decommission or withdraw a device unit",
+   "step": "Other calls",
+   "auth": true,
+   "view": "/cer/api-information?call=set-unit-status",
+   "who": "CER staff only.",
+   "params": [
+    {
+     "name": "id",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "status",
+     "in": "body",
+     "required": true
+    },
+    {
+     "name": "changeReason",
+     "in": "body",
+     "required": true
+    },
+    {
+     "name": "evidenceRef",
+     "in": "body",
+     "required": false
+    }
+   ]
+  },
+  "GET /api/devices/rejections": {
+   "name": "List rejected submissions",
+   "step": "Other calls",
+   "auth": true,
+   "view": "/cer/api-information?call=list-rejections",
+   "who": "Participant users, participant administrators and CER staff. Participants see rejections for their own organisation.",
+   "params": [
+    {
+     "name": "entityKind",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "participantId",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "limit",
+     "in": "query",
+     "required": false
+    }
+   ]
+  },
+  "GET /api/health": {
+   "name": "Check the service is running",
+   "step": "Other calls",
+   "auth": false,
+   "view": "/cer/api-information?call=health",
+   "who": "Anyone, including monitoring tools.",
+   "params": []
+  }
+ }
+}

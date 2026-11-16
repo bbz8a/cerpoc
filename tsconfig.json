@@ -4,9 +4,10 @@
     "module": "commonjs",
     "strict": true,
     "esModuleInterop": true,
+    "resolveJsonModule": true,
     "skipLibCheck": true,
     "noEmit": true,
-    "types": ["node"]
+    "types": ["node", "@playwright/test"]
   },
-  "include": ["tests/**/*.ts", "playwright.config.ts"]
+  "include": ["tests/**/*.ts", "utils/**/*.ts", "playwright/**/*.ts", "pages/**/*.ts", "flows/**/*.ts", "api/**/*.ts", "types/**/*.ts", "dynamic.data/**/*.ts", "playwright.config.ts"]
 }

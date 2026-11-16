@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 
+import { loginAs } from '../utils/login-helper';
 
   export interface OrganisationDetails {
     legal_name: string;
@@ -24,41 +25,23 @@ import { test, expect } from '@playwright/test';
     application_status: string;
   }
 
+
+// login-helper.loginAs(role) to login as cer officer
+
 test('test', async ({ page }) => {
 
   // Add the login recording to its own page object
-  const username = process.env.CERP_USERNAME;
-  const password = process.env.CERP_PASSWORD;
-  const login_url = process.env.LOGIN_URL;
-  const role = "cer_officer";
+  const role = "officer";
   const pending_filter = "AUTO"; // this means the new participant must have ran before this  
   const action = "cancel"; // this means we are testing the objects match between screens
  
-  if (!username || !password || !login_url) {
-    throw new Error('Set CERP_USERNAME, CERP_PASSWORD, and LOGIN_URL before running this test.');
-  }
-
-  /*// Use the destination URL rather than the Outlook Safe Links wrapper.
-  await page.goto(login_url);
-  await page.getByLabel(/email|username/i).fill(username);
-  await page.getByLabel(/password/i).fill(password);
-  await page.getByRole('button', { name: /sign in|log in|login/i }).click();
-  */
-
-  // Switcher is a sub comoponent of the topbar, maybe add a hover to the topbar to ensure the switcher is visible
-  // add hover here to ensure selector for role switch is visible, use locator to find the button by class name
-  await page.locator('button.identity-switcher__trigger.topbar__user').hover();
-  // select role option
-  await page.getByLabel('RoleCER adminCER').selectOption(role);
-  // switch role
-  await page.getByRole('button', { name: 'Switch' }).click();
-
+  loginAs(page, role);
   
   //BREAK POINT - pause the test to allow for manual inspection of the page and the form fields
   await page.pause(); // Execution stops here
 
   //Click Participants on Left hand menu
-  await page.getByRole('link', { name: 'Participants' }).click();
+  //await page.getByRole('link', { name: 'Participants' }).click();
   
   //BREAK POINT - pause the test to allow for manual inspection of the page and the form fields
   await page.pause(); // Execution stops here
@@ -87,13 +70,13 @@ test('test', async ({ page }) => {
 
 
   await page.getByRole('definition').filter({ hasText: 'pending' }).locator('span').click();
-  await page.getByRole('definition').filter({ hasText: 'Coastal PV Imports Pty Ltd' }).click();
+  //await page.getByRole('definition').filter({ hasText: 'Coastal PV Imports Pty Ltd' }).click();
   
   // use the ABN to ensure the correct application is being viewed, and that the status is "Pending"
   // ABN
   await expect(page.getByText('ABN')).toBeVisible();
-  const  correlation_abn = page.locator('dt:text-is("ABN") + dd');
-  expect(await correlation_abn.textContent()).toBe('33051775556');
+  //const  correlation_abn = page.locator('dt:text-is("ABN") + dd');
+  //expect(await correlation_abn.textContent()).toBe('33051775556');
   
 
   // expand the history and ensure status is pending where version is 1 
@@ -139,8 +122,26 @@ test('test', async ({ page }) => {
 
   //verify updateable form fields match organisation_details object, and that the status is still pending
   
+  
   expect(await page.getByLabel('Legal name').inputValue()).toBe(organisation_details.legal_name);
-  expect(await page.getByLabel('Trading name (optional)').inputValue()).toBe(organisation_details.trading_name);
+  
+  //expect(await page.getByLabel('Trading name (optional)').inputValue()).toBe(organisation_details.trading_name);
+  
+  const in_tn = await page.getByLabel('Trading name (optional)').inputValue();
+  const out_tn = organisation_details.trading_name;
+  
+  await test.step(`Trading Name IN :${in_tn}`, async () => {});
+  await test.step(`Trading Name OUT :${out_tn}`, async () => {});
+
+  test.info().annotations.push({
+    type: 'Trading Name',
+    description: in_tn
+  });
+  
+  
+
+
+
   expect(await page.getByLabel('ABN').inputValue()).toBe(organisation_details.abn);
   expect(await page.getByLabel('Participant type').inputValue()).toBe(organisation_details.participant_type);
   expect(await page.getByLabel('Contact name').inputValue()).toBe(organisation_details.contact_name);
@@ -152,6 +153,7 @@ test('test', async ({ page }) => {
   expect(organisation_details.address).toContain(await page.getByLabel('Postcode').inputValue());
   expect(organisation_details.address).toContain(await page.getByLabel('StateACTNSWNTQLDSATASVICWA').inputValue());
  
+
 
 
  

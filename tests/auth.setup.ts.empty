@@ -1,0 +1,113 @@
+
+
+
+  
+  /*
+  // Add participant application recording to its own page objectFill all fields in the organisation details form, and submit the form
+  // fill legal name field
+  await page.getByRole('textbox', { name: 'Legal name' }).click();
+  await page.getByRole('textbox', { name: 'Legal name' }).fill(`AUTO abc legal ${unique_id}`);
+  //fill optional trading name field
+  await page.getByRole('textbox', { name: 'Trading name (optional)' }).click();
+  await page.getByRole('textbox', { name: 'Trading name (optional)' }).fill(`abc trading ${unique_id}`);
+  //fill ABN field
+  await page.getByRole('textbox', { name: 'ABN 11 digits' }).click();
+  await page.getByRole('textbox', { name: 'ABN 11 digits' }).fill(generateABN()); 
+  // select participant type from dropdown
+  // randomly select a participant type from the dropdown, either manufacturer or importer 
+  // Add enumaration for participant type, and randomly select one of the options
+
+
+  const participantType = getRandomParticipantType();
+  await page.getByLabel('Participant').selectOption(participantType);
+
+  // fill contact name field
+  await page.getByRole('textbox', { name: 'Contact name' }).click();
+  await page.getByRole('textbox', { name: 'Contact name' }).fill(`AUTO abc contact ${unique_id}`);
+  // fill email field
+  await page.getByRole('textbox', { name: 'Email' }).click();
+  await page.getByRole('textbox', { name: 'Email' }).fill(`abc.contact.${unique_id}@automated.com`);
+  // fill phone field
+  await page.getByRole('textbox', { name: 'Phone' }).click();
+
+  await page.getByRole('textbox', { name: 'Phone' }).fill(getRandomMobileNumber());
+  // fill address line 1 field
+  await page.getByRole('textbox', { name: 'Address line 1' }).click();
+  await page.getByRole('textbox', { name: 'Address line 1' }).fill(getRandomStreetAddress());
+  // fill address line 2 field
+  await page.getByRole('textbox', { name: 'Address line 2 (optional)' }).click();
+  await page.getByRole('textbox', { name: 'Address line 2 (optional)' }).fill(getRandomAddressLine2());
+  
+  const randomState = getRandomState();
+  const randomPostCode = getRandomPostCode(randomState);
+  const randomSuburb = getRandomSuburb(randomState, randomPostCode);
+  // fill suburb field
+  await page.getByRole('textbox', { name: 'Suburb' }).click();
+    await page.getByRole('textbox', { name: 'Suburb' }).fill(randomSuburb);
+  // Select a state from dropdown
+ 
+  await page.getByLabel('StateACTNSWNTQLDSATASVICWA').selectOption(randomState);
+
+  // fill postcode field, ensure it matches state main city
+  await page.getByRole('textbox', { name: 'Postcode' }).click();
+  await page.getByRole('textbox', { name: 'Postcode' }).fill(randomPostCode);
+
+  // Declarations
+  await page.getByRole('checkbox', { name: 'I am authorised to apply on' }).check();
+  await page.getByRole('checkbox', { name: 'The information provided is' }).check(); 
+
+  await page.getByRole('textbox', { name: 'Evidence notes (optional)' }).fill(`AUTO Test evidence optional notes ${unique_id}`);
+  
+  // pause and wait for manual inspection of the form fields
+  await page.pause(); // Execution stops here
+
+  if (commit) {
+  
+    await page.getByRole('button', { name: 'Submit to CER' }).click();
+    // wait for the next page to load before signing out
+    await page.waitForLoadState('networkidle');
+
+    const screenshot = await page.screenshot();
+
+    await testInfo.attach('Application Screenshot', {
+        body: screenshot,
+        contentType: 'image/png',
+    });
+
+    await page.pause(); // Execution stops here, record assertion that new record is pending approval
+    
+  }
+
+
+
+
+  //switch back to admin role and sign out
+  await page.locator('button.identity-switcher__trigger.topbar__user').hover();
+  await page.getByLabel('RoleCER adminCER').selectOption('cer_admin');
+  await page.getByRole('button', { name: 'Switch' }).click();
+
+  // wait for the next page to load before signing out
+  await page.waitForLoadState('networkidle');
+
+  //hover over signout button 
+
+  await page.getByRole('button', { name: 'Sign out' }).hover()
+  await page.getByRole('button', { name: 'Sign out' }).click();
+
+  await expect(page.getByRole('button', { name: 'Sign out' })).not.toBeVisible();
+
+  const current_url = page.url();
+
+  await test.step ('Capture page URL', async () => {
+    console.log(`Logged in URL: ${current_url}`);
+    expect(current_url).toMatch(login_url);
+  }); 
+
+  await page.goto("about:blank");
+
+  await page.goto(login_url);
+  await page.getByLabel(/email|username/i).fill(username);
+  await page.getByLabel(/password/i).fill("wrongpassword");
+  await page.getByRole('button', { name: /sign in|log in|login/i }).click();
+
+  */

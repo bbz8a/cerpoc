@@ -1,0 +1,20 @@
+const { open, creds } = require('./lib');
+(async () => {
+  const { browser, context, page } = await open('probe');
+  const c = creds('applicant');
+  const authHeaders = new Set();
+  page.on('request', r => { const h = r.headers(); if (h.authorization) authHeaders.add(r.url().replace(/\?.*/,'') + ' -> ' + h.authorization.split(' ')[0]); });
+  await page.goto(process.env.BASE_URL, { waitUntil: 'load' });
+  await page.getByLabel('Username').fill(c.username);
+  await page.getByLabel('Password').fill(c.password);
+  await page.getByRole('button', { name: 'Sign in' }).click();
+  await page.waitForURL(/\/applicant/);
+  await page.waitForLoadState('networkidle');
+  const ss = await page.evaluate(() => Object.keys(sessionStorage));
+  const ls = await page.evaluate(() => Object.keys(localStorage));
+  const ck = (await context.cookies()).map(x => x.name);
+  console.log({ sessionStorage: ss, localStorage: ls, cookies: ck, authHeaders: [...authHeaders].slice(0,5) });
+  await page.reload({ waitUntil: 'networkidle' });
+  console.log('after reload URL:', page.url());
+  await browser.close();
+})().catch(e => { console.error(e); process.exit(1); });

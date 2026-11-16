@@ -1,9 +1,15 @@
 {
   "name": "cerpoc",
   "version": "1.0.0",
-  "description": "",
+  "description": "Playwright end-to-end and API tests for the CER device register POC (RegiGov)",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "playwright test --workers=1",
+    "test:api": "playwright test --project=api --workers=1",
+    "typecheck": "npx --yes -p typescript@5 tsc -p .",
+    "report": "playwright show-report",
+    "install:browsers": "playwright install chromium"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

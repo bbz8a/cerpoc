@@ -24,6 +24,8 @@ test('test', async ({ page }) => {
   await page.getByLabel('RoleCER adminCER').selectOption(role);
   // switch role
   await page.getByRole('button', { name: 'Switch' }).click();
+
+  
   // Add participant application recording to its own page objectFill all fields in the organisation details form, and submit the form
   // fill legal name field
   await page.getByRole('textbox', { name: 'Legal name' }).click();

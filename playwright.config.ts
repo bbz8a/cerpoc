@@ -34,19 +34,35 @@ export default defineConfig({
     video: 'on',
     // not ideal to have this in the config, but it is needed for the CERP login test to work for webkit, as the certificate is not trusted. This is a known issue with Playwright and self-signed certificates.
     ignoreHTTPSErrors: true,
-    headless: false,
+    // Headed by default; set HEADLESS=1 (or run-e2e.ps1 -Headless) to run without a window. Videos are recorded either way.
+    headless: !!process.env.HEADLESS,
+    screenshot: 'only-on-failure',
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
+      // Logs in each user once and saves session to playwright/.auth/*.json
       name: 'setup',
+      testDir: './playwright',
       testMatch: /.*\.setup\.ts/,
     },
     {
-      name: 'chromium',
+      // Business-as-usual positive flows (one page per scenario, users sign out/in)
+      name: 'bau',
+      testDir: './tests/bau',
       use: { ...devices['Desktop Chrome'] },
-      dependencies: ['setup'],
+    },
+    {
+      // API tests against <BASE_URL>/api (no browser) - see api/ and api/spec/openapi.json
+      name: 'api',
+      testDir: './tests/api',
+    },
+    {
+      // Restores accounts to a clean state after failed runs - NOT part of BAU
+      name: 'recovery',
+      testDir: './tests/recovery',
+      use: { ...devices['Desktop Chrome'] },
     },
   /*  {
       name: 'firefox',

@@ -1,0 +1,155 @@
+[
+  {
+    "manufacturer": "JA Solar",
+    "abn": "91111172960",
+    "modelNumber": "JAM54D41-445/LB",
+    "modelName": "DeepBlue 4.0 Pro",
+    "ratedOutputAtSTC": 445,
+    "cellTechnology": "N-Type Bycium+",
+    "base": "China"
+  },
+  {
+    "manufacturer": "JA Solar",
+    "abn": "91111172960",
+    "modelNumber": "JAM54D41-450/LB",
+    "modelName": "DeepBlue Pro",
+    "ratedOutputAtSTC": 450,
+    "cellTechnology": "N-Type Bycium+",
+    "base": "China"
+  },
+  {
+    "manufacturer": "JA Solar",
+    "abn": "91111172960",
+    "modelNumber": "JAM54D41-460/LB",
+    "modelName": "DeepBlue Pro+",
+    "ratedOutputAtSTC": 460,
+    "cellTechnology": "N-Type Bycium+",
+    "base": "China"
+  },
+  {
+    "manufacturer": "JA Solar",
+    "abn": "91111172960",
+    "modelNumber": "JAM72D42-620/LB",
+    "modelName": "DeepBlue Utility",
+    "ratedOutputAtSTC": 620,
+    "cellTechnology": "N-Type Bycium+",
+    "base": "China"
+  },
+  {
+    "manufacturer": "JA Solar",
+    "abn": "91111172960",
+    "modelNumber": "JAM72D42-630/LB",
+    "modelName": "DeepBlue 4.0 Utility",
+    "ratedOutputAtSTC": 630,
+    "cellTechnology": "N-Type Bycium+",
+    "base": "China"
+  },
+  {
+    "manufacturer": "JA Solar",
+    "abn": "91111172960",
+    "modelNumber": "JAM72D42-635/LB",
+    "modelName": "DeepBlue Utility Max",
+    "ratedOutputAtSTC": 635,
+    "cellTechnology": "N-Type Bycium+",
+    "base": "China"
+  },
+  {
+    "manufacturer": "LONGi Solar",
+    "abn": "34611176297",
+    "modelNumber": "LR5-54HTH-440M",
+    "modelName": "Hi-MO X6 Explorer",
+    "ratedOutputAtSTC": 440,
+    "cellTechnology": "HPBC",
+    "base": "China"
+  },
+  {
+    "manufacturer": "LONGi Solar",
+    "abn": "34611176297",
+    "modelNumber": "LR5-54HTB-445M",
+    "modelName": "Hi-MO X6 Black",
+    "ratedOutputAtSTC": 445,
+    "cellTechnology": "HPBC",
+    "base": "China"
+  },
+  {
+    "manufacturer": "LONGi Solar",
+    "abn": "34611176297",
+    "modelNumber": "LR5-54HTB-455M",
+    "modelName": "Hi-MO X6 Max",
+    "ratedOutputAtSTC": 455,
+    "cellTechnology": "HPBC",
+    "base": "China"
+  },
+  {
+    "manufacturer": "LONGi Solar",
+    "abn": "34611176297",
+    "modelNumber": "LR7-72HTH-605M",
+    "modelName": "Hi-MO 7",
+    "ratedOutputAtSTC": 605,
+    "cellTechnology": "HPDC",
+    "base": "China"
+  },
+  {
+    "manufacturer": "LONGi Solar",
+    "abn": "34611176297",
+    "modelNumber": "LR7-72HTH-610M",
+    "modelName": "Hi-MO 7 Plus",
+    "ratedOutputAtSTC": 610,
+    "cellTechnology": "HPDC",
+    "base": "China"
+  },
+  {
+    "manufacturer": "LONGi Solar",
+    "abn": "34611176297",
+    "modelNumber": "LR8-66HGD-700M",
+    "modelName": "Hi-MO Utility Max",
+    "ratedOutputAtSTC": 700,
+    "cellTechnology": "HPDC",
+    "base": "China"
+  },
+  {
+    "manufacturer": "Qcells",
+    "abn": "96211179297",
+    "modelNumber": "Q.TRON BLK M-G2+ 440",
+    "modelName": "Q.TRON BLK",
+    "ratedOutputAtSTC": 440,
+    "cellTechnology": "N-Type Q.ANTUM",
+    "base": "Korea"
+  },
+  {
+    "manufacturer": "Qcells",
+    "abn": "96211179297",
+    "modelNumber": "Q.TRON M-G2 445",
+    "modelName": "Q.TRON Standard",
+    "ratedOutputAtSTC": 445,
+    "cellTechnology": "N-Type Q.ANTUM",
+    "base": "Korea"
+  },
+  {
+    "manufacturer": "Qcells",
+    "abn": "96211179297",
+    "modelNumber": "Q.TRON BLK 450",
+    "modelName": "Q.TRON Black",
+    "ratedOutputAtSTC": 450,
+    "cellTechnology": "N-Type Q.ANTUM",
+    "base": "Korea"
+  },
+  {
+    "manufacturer": "Qcells",
+    "abn": "96211179297",
+    "modelNumber": "Q.TRON XL 590",
+    "modelName": "Q.TRON Commercial",
+    "ratedOutputAtSTC": 590,
+    "cellTechnology": "N-Type Q.ANTUM",
+    "base": "Korea"
+  },
+  {
+    "manufacturer": "Qcells",
+    "abn": "96211179297",
+    "modelNumber": "Q.TRON XL 610",
+    "modelName": "Q.TRON Utility",
+    "ratedOutputAtSTC": 610,
+    "cellTechnology": "N-Type Q.ANTUM",
+    "base": "Korea"
+  }
+]

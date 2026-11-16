@@ -1,0 +1,152 @@
+[
+  {
+    "retailerName": "One Stop Warehouse (OSW)",
+    "supplierType": "Local Wholesaler / Distributor",
+    "businessAddress": "52 Quarry Rd, Erskine Park NSW 2759, Australia",
+    "website": "https://osw.energy/au/",
+    "deviceTypesSold": [
+      "PV_battery",
+      "inverter",
+      "ev_revolt_charger"
+    ],
+    "notableBrandsStocked": [
+      "Sungrow",
+      "GoodWe",
+      "BYD",
+      "AlphaESS",
+      "Fronius",
+      "SMA",
+      "Enphase",
+      "PowerPlus Energy"
+    ]
+  },
+  {
+    "retailerName": "Solar Juice",
+    "supplierType": "Local Wholesaler / Distributor",
+    "businessAddress": "1/10-12 Forsyth Cl, Wetherill Park NSW 2164, Australia",
+    "website": "https://solarjuice.com.au",
+    "deviceTypesSold": [
+      "PV_battery",
+      "inverter",
+      "ev_revolt_charger"
+    ],
+    "notableBrandsStocked": [
+      "Tesla",
+      "Sungrow",
+      "GoodWe",
+      "Fronius",
+      "SMA",
+      "Enphase",
+      "myenergi"
+    ]
+  },
+  {
+    "retailerName": "Supply Partners",
+    "supplierType": "Local Wholesaler / Distributor",
+    "businessAddress": "184 Bluestone Cct, Seventeen Mile Rocks QLD 4073, Australia",
+    "website": "https://supplypartners.com.au/",
+    "deviceTypesSold": [
+      "PV_battery",
+      "inverter",
+      "ev_revolt_charger"
+    ],
+    "notableBrandsStocked": [
+      "BYD",
+      "PowerPlus Energy",
+      "Sigenergy",
+      "Fronius",
+      "SMA",
+      "Sungrow",
+      "Wallbox"
+    ]
+  },
+  {
+    "retailerName": "EVSE Australia",
+    "supplierType": "Local Specialist Retailer",
+    "businessAddress": "14 Millennium Ct, Silverwater NSW 2128, Australia",
+    "website": "https://evse.com.au",
+    "deviceTypesSold": [
+      "ev_revolt_charger"
+    ],
+    "notableBrandsStocked": [
+      "Ocular",
+      "Wallbox",
+      "myenergi",
+      "ABB",
+      "Tritium"
+    ]
+  },
+  {
+    "retailerName": "JET Charge",
+    "supplierType": "Local Specialist Retailer & Infrastructure Provider",
+    "businessAddress": "10/350 Bridge St, Port Melbourne VIC 3207, Australia",
+    "website": "https://jetcharge.com.au/",
+    "deviceTypesSold": [
+      "ev_revolt_charger"
+    ],
+    "notableBrandsStocked": [
+      "ChargeMate",
+      "Tritium",
+      "ABB",
+      "Wallbox",
+      "Tesla"
+    ]
+  },
+  {
+    "retailerName": "Revcharge Australia",
+    "supplierType": "Local Online Retailer & Installer",
+    "businessAddress": "Melbourne VIC, Australia",
+    "website": "https://revcharge.com.au",
+    "deviceTypesSold": [
+      "ev_revolt_charger",
+      "PV_battery"
+    ],
+    "notableBrandsStocked": [
+      "Tesla",
+      "myenergi",
+      "FoxESS",
+      "Sungrow",
+      "Sigenergy"
+    ]
+  },
+  {
+    "retailerName": "Tesla Motors Australia",
+    "supplierType": "Foreign Manufacturer Direct Retail",
+    "businessAddress": "546 Gardeners Rd, Alexandria NSW 2015, Australia",
+    "website": "https://tesla.com",
+    "deviceTypesSold": [
+      "EV_battery",
+      "PV_battery",
+      "ev_revolt_charger"
+    ],
+    "notableBrandsStocked": [
+      "Tesla"
+    ]
+  },
+  {
+    "retailerName": "BYD Automotive Australia (EVDirect)",
+    "supplierType": "Foreign Manufacturer Direct Retail",
+    "businessAddress": "188 Parramatta Rd, Homebush NSW 2140, Australia",
+    "website": "https://bydautomotive.com.au",
+    "deviceTypesSold": [
+      "EV_battery",
+      "PV_battery"
+    ],
+    "notableBrandsStocked": [
+      "BYD"
+    ]
+  },
+  {
+    "retailerName": "ReVolt Energy Group Australia",
+    "supplierType": "Foreign Infrastructure Operator & Supplier",
+    "businessAddress": "Level 2, 11 York St, Sydney NSW 2000, Australia",
+    "website": "https://revolt.au",
+    "deviceTypesSold": [
+      "ev_revolt_charger",
+      "PV_battery"
+    ],
+    "notableBrandsStocked": [
+      "ReVolt"
+    ]
+  }
+]
