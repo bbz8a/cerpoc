@@ -13,3 +13,6 @@ node_modules/
 
 # Exploration output (screenshots, aria dumps, saved bearer tokens)
 /explore/out/
+
+# Disabled specs/drafts (not checked in)
+*.off
