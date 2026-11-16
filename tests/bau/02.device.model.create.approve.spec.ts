@@ -29,7 +29,6 @@ import { ParticipantType } from '../../types/organisation';
 const CASES: { type: ParticipantType; title: string; models: () => { models: DeviceModel[]; note?: string } }[] = [
   { type: 'manufacturer', title: 'Manufacturer registers a PV module', models: () => ({ models: [buildDeviceModel('pv_module')] }) },
   { type: 'importer', title: 'Importer registers an inverter', models: () => ({ models: [buildDeviceModel('inverter')] }) },
-  { type: 'installer', title: 'Installer registers a PV battery', models: () => ({ models: [buildModelOfSeedType('PV_battery')] }) },
   { type: 'aggregator', title: 'Aggregator registers an EV charger', models: () => ({ models: [buildDeviceModel('ev_revolt_charger')] }) },
   {
     type: 'retailer', title: 'Retailer registers each device type it sells',
@@ -38,13 +37,17 @@ const CASES: { type: ParticipantType; title: string; models: () => { models: Dev
       return { models, note: `${profile.retailerName} (${profile.supplierType}) sells ${profile.deviceTypesSold.join(', ')}` };
     },
   },
+  // Last: the app refuses installers ("a installer cannot register device models"). Kept as evidence of the
+  // implementation gap; it fails with the app's message without holding up the other cases.
+  { type: 'installer', title: 'Installer registers a PV battery', models: () => ({ models: [buildModelOfSeedType('PV_battery')] }) },
 ];
 
 const [participantAccount, approver] = getAccountPair(process.env.E2E_PARTICIPANT ?? 'officer', process.env.E2E_APPROVER ?? 'admin');
 const applicant = getAccount(process.env.E2E_APPLICANT ?? 'officer');
 
-// serial: accounts share server-side role state; 5 min: retailer case registers several models
-test.describe.configure({ mode: 'serial', timeout: 300_000 });
+// default (not serial): one at a time in order - accounts share server-side role state - but a failing
+// case does not skip the ones after it (they are independent). 5 min: retailer case registers several models
+test.describe.configure({ mode: 'default', timeout: 300_000 });
 
 for (const c of CASES) {
   test(`Device model: ${c.title}, CER approves for use`, async ({ page }) => {
