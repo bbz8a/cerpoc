@@ -151,10 +151,17 @@ export class RecallPage extends BasePage {
     return block.locator(`dt:text-is("${label}") + dd`);
   }
 
-  async trail(block: Locator): Promise<{ event: string; by: string; note: string; evidence: string }[]> {
+  /**
+   * Resolution trail rows. A status change shows as "notified → acknowledged": event is the status reached,
+   * from the one before (absent for "notified" and "note").
+   */
+  async trail(block: Locator): Promise<{ event: string; from?: string; by: string; note: string; evidence: string }[]> {
     const rows = await block.getByRole('table').locator('tbody tr').evaluateAll(trs =>
       trs.map(tr => Array.from(tr.querySelectorAll('td')).map(td => (td.textContent ?? '').replace(/\s+/g, ' ').trim())));
-    return rows.map(([, event, by, note, evidence]) => ({ event, by, note: note ?? '', evidence: evidence ?? '' }));
+    return rows.map(([, cell, by, note, evidence]) => {
+      const [from, to] = cell.includes('→') ? cell.split('→').map(s => s.trim()) : [undefined, cell];
+      return { event: to, from, by, note: note ?? '', evidence: evidence ?? '' };
+    });
   }
 
   private waitFor(kind: 'status' | 'notes' | 'close', unitScoped = true): Promise<Response> {

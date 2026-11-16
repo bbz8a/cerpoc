@@ -83,7 +83,13 @@ test('Phase 6: batch recall - snapshot, responsible participant, visibility, ver
   await test.step('cer.officer: raise a critical recall on SV-BAT-10 batch B2607-A', async () => {
     await signInAsSeed(page, seedAccount('cer.officer'));
     await expect(page.getByRole('banner')).toContainText('cer_officer');
-    const incidents = (await pageApi(page, 'GET', `/incidents?q=${u101.serial}`)).json?.items ?? [];
+    // A run that failed before its clean-up step leaves its late unit (SVB10-P6-*) in B2607-A - take it out of scope.
+    const units = (await pageApi(page, 'GET', `/devices/units?modelId=${SEED.models.svBat10}&limit=200`)).json?.items ?? [];
+    for (const left of units.filter((u: any) => u.batch === u101.batch && /^SVB10-P6-/.test(u.serial) && u.status !== 'decommissioned')) {
+      await decommissionUnit(page, left.id, `E2E Phase 6 clean-up: ${left.serial} left by an interrupted run`);
+      notes.push({ type: 'clean-up', description: `decommissioned ${left.serial} (left in B2607-A by an interrupted run)` });
+    }
+    const incidents =(await pageApi(page, 'GET', `/incidents?q=${u101.serial}`)).json?.items ?? [];
     const incident = incidents.find((i: any) => i.reportedByParticipantId === gridcell && !i.recallId);
     if (!incident) notes.push({ type: 'linked incident', description: 'none free (each GridCell incident on SVB10-24-000101 is already linked) - raised without a link' });
 

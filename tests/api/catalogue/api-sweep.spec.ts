@@ -187,7 +187,8 @@ test('API sweep: significant calls of Phases 1-6 against /cer/api-information', 
     const P = 3;
     const kinds = [
       { kind: 'models', id: data.modelId, changes: { name: `E2E API sweep battery ${stamp} (corrected)` } },
-      { kind: 'units', id: data.unitA, changes: { batch: `${data.batch}-C` } },
+      // attributes, not batch - unit A must stay in the batch Phase 6 recalls
+      { kind: 'units', id: data.unitA, changes: { attributes: { usable_capacity_kwh: 9.5 } } },
       { kind: 'installations', id: data.instA, changes: { address: { line1: '1 Sweep St (corrected)', suburb: 'Torquay', state: 'VIC', postcode: '3228' } } },
     ] as const;
     for (const k of kinds) {
@@ -341,6 +342,14 @@ test('API sweep: significant calls of Phases 1-6 against /cer/api-information', 
       untestable: running ? `run ${running.id} (${running.partner}) started ${running.startedAt ?? running.createdAt} is still ${running.status} - not starting another` : undefined,
     });
     if (started?.body?.id) fixtures.write({ reconciliationRun: { id: started.body.id, partner, at: now() } });
+    else if (started && started.status >= 500) {
+      // The gateway can time out while the run carries on - look for it.
+      const latest = items(await cer.client.get('/exchange/reconciliation?limit=5')).find(r => r.partner === partner && Date.parse(r.startedAt) > Date.now() - 300_000);
+      const msg = latest ? `POST /exchange/reconciliation answered ${started.status} but run ${latest.id} (${partner}) started and is ${latest.status}` : `POST /exchange/reconciliation answered ${started.status} and no ${partner} run started`;
+      test.info().annotations.push({ type: 'api check', description: msg });
+      reportIssue(msg);
+      if (latest) fixtures.write({ reconciliationRun: { id: latest.id, partner, at: now() } });
+    }
     // Page through the smallest completed run that has differences.
     const done = runs.filter(r => r.status === 'completed' && r.differences > 2).sort((a, b) => a.differences - b.differences)[0];
     const page1 = await sweep.call({
